@@ -7,6 +7,7 @@ import type { ProductsData } from "../../types/product-types";
 import { GET_CATEGORY_PRODUCTS } from "../../graphql/category-graphql";
 import { GET_PRODUCTS } from "../../graphql/product-graphql";
 
+import { ProductGrid } from "../../components/product/product-grid";
 import { NotFound } from "../../components/errors/not-found";
 import { Loading } from "../../components/loader/loading";
 import { Category } from "../../components/category";
@@ -35,12 +36,9 @@ export const CategoryProductsPage = () => {
   const title = isAllCategory ? "All" : (data as CategoryData).category.name;
 
   return (
-    <div>
+    <div className="space-y-24">
       <Category title={title}>
-        {/* TODO: PRODUCTS-GRID */}
-        {products.map((p) => (
-          <p key={p.id}>{p.name}</p>
-        ))}
+        <ProductGrid products={products} />
       </Category>
     </div>
   );
