@@ -1,23 +1,26 @@
-import { useParams } from "react-router";
-import { ProductAttributes } from "../../components/attributes";
 import { useQuery } from "@apollo/client/react";
-import { GET_PRODUCT_DETAILS } from "../../graphql/product-graphql";
-import { Loading } from "../../components/loader/loading";
-import { NotFound } from "../../components/errors/not-found";
-import type { Product } from "../../types/product-types";
-import { ProductPrice } from "../../components/product/pdp/product-price";
-import { AddToCartBtn } from "../../components/product/pdp/add-to-cart-btn";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import parse from "html-react-parser";
-import { ProductGalleryCarousel } from "../../components/product/pdp/carousel/gallery-carousel";
-import { useState } from "react";
+import { toast } from "sonner";
+
+import { useCart } from "../../context/cart-context";
+
+import { GET_PRODUCT_DETAILS } from "../../graphql/product-graphql";
+
 import type { Attribute } from "../../types/attribute-types";
+import type { Product } from "../../types/product-types";
+
+import { ProductGalleryCarousel } from "../../components/product/pdp/carousel/gallery-carousel";
+import { AddToCartBtn } from "../../components/product/pdp/add-to-cart-btn";
+import { ProductPrice } from "../../components/product/pdp/product-price";
+import { ProductAttributes } from "../../components/attributes";
+import { NotFound } from "../../components/errors/not-found";
+import { Loading } from "../../components/loader/loading";
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
-
-  const [selectedAttributes, setSelectedAttributes] = useState<
-    Record<string, Attribute>
-  >({});
+  const cart = useCart();
 
   const { loading, error, data } = useQuery<{ product: Product }>(
     GET_PRODUCT_DETAILS,
@@ -28,24 +31,60 @@ export const ProductDetailsPage = () => {
     },
   );
 
+  const [selectedAttributes, setSelectedAttributes] = useState<
+    Record<
+      string,
+      {
+        type: string;
+        attribute: Attribute;
+      }
+    >
+  >({});
+  const [isAddToCartActive, setAddToCartStatus] = useState<boolean>(false);
+
+  useEffect(() => {
+    const addToCartBtnStatus =
+      data?.product.inStock &&
+      Object.entries(selectedAttributes).length ===
+        data?.product.attributes.length;
+
+    setAddToCartStatus(!!addToCartBtnStatus);
+  }, [
+    selectedAttributes,
+    data?.product.attributes.length,
+    data?.product.inStock,
+  ]);
+
   if (loading) return <Loading />;
   if (error) return <NotFound />;
 
   const handleAttributeSelect = (
     attributeSetId: string,
+    attributeSetTye: string,
     attribute: Attribute,
   ) => {
     setSelectedAttributes((prev) => ({
       ...prev,
-      [attributeSetId]: attribute,
+      [attributeSetId]: {
+        type: attributeSetTye,
+        attribute,
+      },
     }));
   };
 
   const handleAddToCart = () => {
-    console.log({
-      product: data?.product,
-      selectedAttributes,
-    });
+    if (isAddToCartActive) {
+      toast.success("Item was added to the cart");
+      cart.addItem({
+        product: data!.product,
+        id: data!.product.id,
+        name: data!.product.name,
+        imageUrl: data!.product.gallery[0].url || "",
+        price: data!.product.prices[0].amount,
+        quantity: 1,
+        attributes: selectedAttributes,
+      });
+    }
   };
 
   return (
@@ -61,7 +100,11 @@ export const ProductDetailsPage = () => {
           onAttributeSelect={handleAttributeSelect}
         />
         <ProductPrice price={data!.product.prices[0]} />
-        <AddToCartBtn handleAddToCart={handleAddToCart} />
+
+        <AddToCartBtn
+          handleAddToCart={handleAddToCart}
+          isActive={isAddToCartActive}
+        />
 
         <article
           data-testid="product-description"

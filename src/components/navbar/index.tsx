@@ -4,7 +4,7 @@ import { NavLogo } from "./nav-logo";
 
 export const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between">
+    <nav className="relative grid grid-cols-1 items-center justify-between sm:grid-cols-3">
       <NavLinks />
 
       <NavLogo />

@@ -12,7 +12,6 @@ export const ProductGalleryCarousel = ({ gallery }: Props) => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const nextImage = () => {
-    console.log("nextImage");
     setSelectedImage((prev) => (prev + 1) % gallery.length);
   };
 

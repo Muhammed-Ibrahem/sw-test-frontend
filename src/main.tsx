@@ -7,12 +7,15 @@ import { RouterProvider } from "react-router";
 import { APOLLO_CLIENT } from "./apollo/apollo-client";
 import { ROUTER } from "./routes/app-routes";
 
+import { CartProvider } from "./context/cart-context";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ApolloProvider client={APOLLO_CLIENT}>
-      <RouterProvider router={ROUTER} />
+      <CartProvider>
+        <RouterProvider router={ROUTER} />
+      </CartProvider>
     </ApolloProvider>
   </StrictMode>,
 );

@@ -32,6 +32,16 @@ export const GET_CATEGORY_PRODUCTS = gql`
             symbol
           }
         }
+        attributes {
+          id
+          name
+          type
+          items {
+            id
+            displayValue
+            value
+          }
+        }
       }
     }
   }

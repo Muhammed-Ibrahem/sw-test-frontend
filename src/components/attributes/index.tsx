@@ -5,8 +5,18 @@ import { TextAttribute } from "./text-attribute";
 
 type Props = {
   attributes: AttributeSet[];
-  selectedAttributes: Record<string, Attribute>;
-  onAttributeSelect: (attributeSetId: string, attribute: Attribute) => void;
+  selectedAttributes: Record<
+    string,
+    {
+      type: string;
+      attribute: Attribute;
+    }
+  >;
+  onAttributeSelect: (
+    attributeSetId: string,
+    attributeSetType: string,
+    attribute: Attribute,
+  ) => void;
 };
 
 const ATTRIBUTES = {
@@ -31,8 +41,12 @@ export const ProductAttributes = ({
             <AttributeComponent
               key={item.id}
               attributeItem={item}
-              isSelected={selectedAttributes[attributeSet.id]?.id === item.id}
-              onSelect={(attr) => onAttributeSelect(attributeSet.id, attr)}
+              isSelected={
+                selectedAttributes[attributeSet.id]?.attribute.id === item.id
+              }
+              onSelect={(attr) =>
+                onAttributeSelect(attributeSet.id, attributeSet.type, attr)
+              }
             />
           ))}
         </ul>

@@ -20,6 +20,16 @@ export const GET_PRODUCTS = gql`
           symbol
         }
       }
+      attributes {
+        id
+        name
+        type
+        items {
+          id
+          displayValue
+          value
+        }
+      }
     }
   }
 `;
@@ -30,6 +40,7 @@ export const GET_PRODUCT_DETAILS = gql`
       id
       name
       description
+      inStock
       gallery {
         id
         url
