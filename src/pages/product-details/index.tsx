@@ -84,6 +84,7 @@ export const ProductDetailsPage = () => {
         quantity: 1,
         attributes: selectedAttributes,
       });
+      cart.changeCartStatus(true);
     }
   };
 
