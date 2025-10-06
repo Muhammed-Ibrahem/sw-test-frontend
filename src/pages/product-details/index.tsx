@@ -92,7 +92,7 @@ export const ProductDetailsPage = () => {
       <div className="col-span-2">
         <ProductGalleryCarousel gallery={data!.product.gallery} />
       </div>
-      <div className="">
+      <div>
         <h1 className="mb-8 text-3xl font-bold">{data?.product.name}</h1>
         <ProductAttributes
           attributes={data!.product.attributes}

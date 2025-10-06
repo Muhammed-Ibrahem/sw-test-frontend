@@ -6,6 +6,7 @@ import type { CartItem } from "../../types/cart-types";
 import { CartSwatchAttribute } from "./cart-swatch-attribute";
 import { CartTextAttribute } from "./cart-text-attribute";
 import { useCart } from "../../context/cart-context";
+import { toKebabCase } from "../../utils/kebab-case";
 
 type Props = {
   item: CartItem;
@@ -24,7 +25,11 @@ export const CartItemComponent = ({ item, otherAttributes }: Props) => {
       const AttrComponent = CART_ITEM_ATTRIBUTES[attrSet.type];
 
       return (
-        <div key={attrSet.id} className="py-2">
+        <div
+          key={attrSet.id}
+          className="py-2"
+          data-testid={`cart-item-attribute-${toKebabCase(attrSet.name)}`}
+        >
           <h3 className="font-roboto-condensed text-sm">{attrSet.name}:</h3>
           <ul className="flex items-center">
             {attrSet.items.map((attr) => {
@@ -35,6 +40,7 @@ export const CartItemComponent = ({ item, otherAttributes }: Props) => {
                   isSelected={
                     item.attributes[attrSet.name]?.attribute.id === attr.id
                   }
+                  testId={`cart-item-attribute-${toKebabCase(attrSet.name)}-${toKebabCase(attr.id)}`}
                 />
               );
             })}
@@ -49,11 +55,14 @@ export const CartItemComponent = ({ item, otherAttributes }: Props) => {
       <div className="flex w-full justify-between">
         <div>
           <h3 className="text-lg font-light">{item.name}</h3>
-          <p className="font-medium">${item.price.toFixed(2)}</p>
+          <p className="font-medium" data-testid="cart-item-amount">
+            ${item.price.toFixed(2)}
+          </p>
           <AttributesComponent />
         </div>
         <div className="flex max-h-28 min-h-20 flex-col items-center justify-between self-center select-none">
-          <Plus
+          <button
+            data-testid="cart-item-amount-increase"
             className="cursor-pointer border"
             onClick={() => {
               addItem({
@@ -61,14 +70,19 @@ export const CartItemComponent = ({ item, otherAttributes }: Props) => {
                 quantity: 1,
               });
             }}
-          />
+          >
+            <Plus />
+          </button>
           {item.quantity}
-          <Minus
+          <button
+            data-testid="cart-item-amount-decrease"
             className="cursor-pointer border"
             onClick={() => {
               removeItem(item);
             }}
-          />
+          >
+            <Minus />
+          </button>
         </div>
       </div>
       <div className="flex items-center justify-center">

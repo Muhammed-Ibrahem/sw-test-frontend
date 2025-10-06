@@ -5,11 +5,16 @@ import { cn } from "../../utils/cn";
 type Props = {
   attributeItem: Attribute;
   isSelected: boolean;
+  testId: string;
 };
 
-export const CartSwatchAttribute = ({ attributeItem, isSelected }: Props) => {
+export const CartSwatchAttribute = ({
+  attributeItem,
+  isSelected,
+  testId,
+}: Props) => {
   return (
-    <li>
+    <li data-testid={`${testId}${isSelected ? "-selected" : ""}`}>
       <button
         className={cn("border-2 border-transparent p-0.5", {
           "border-grayed border-2": isSelected,

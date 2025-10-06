@@ -5,6 +5,8 @@ import { ShoppingCart } from "lucide-react";
 import type { Product } from "../../types/product-types";
 
 import { useCart } from "../../context/cart-context";
+
+import { toKebabCase } from "../../utils/kebab-case";
 import { toast } from "sonner";
 
 type Props = {
@@ -23,7 +25,10 @@ export const ProductCard: FC<Props> = ({ product }: Props) => {
   }, {});
 
   return (
-    <div className="group relative">
+    <div
+      className="group relative"
+      data-testid={`product-${toKebabCase(product.name)}`}
+    >
       <div className="relative mb-4 aspect-square overflow-hidden bg-gray-100 group-hover:p-4 group-hover:shadow-sm">
         <Link key={product.id} to={`/product/${product.id}`}>
           <img

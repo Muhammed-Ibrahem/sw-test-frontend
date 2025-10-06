@@ -1,4 +1,5 @@
 import type { Attribute, AttributeSet } from "../../types/attribute-types";
+import { toKebabCase } from "../../utils/kebab-case";
 
 import { SwatchAttribute } from "./swatch-attribute";
 import { TextAttribute } from "./text-attribute";
@@ -32,7 +33,11 @@ export const ProductAttributes = ({
   return attributes.map((attributeSet) => {
     const AttributeComponent = ATTRIBUTES[attributeSet.type];
     return (
-      <div key={attributeSet.id} className="py-4">
+      <div
+        key={attributeSet.id}
+        className="py-4"
+        data-testid={`product-attribute-${toKebabCase(attributeSet.id)}`}
+      >
         <h3 className="font-roboto-condensed mb-2 text-lg font-bold uppercase">
           {attributeSet.name}:
         </h3>

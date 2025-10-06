@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
 import { cn } from "../../utils/cn";
 
 type Props = {
@@ -6,10 +6,14 @@ type Props = {
 };
 
 export const NavbarLink = ({ name }: Props) => {
+  const { categoryName } = useParams();
+  const dataTestId =
+    categoryName === name ? "active-category-link" : "category-link";
   return (
     <li className="flex h-20 items-center">
       <NavLink
         to={`/${name}`}
+        data-testid={dataTestId}
         className={({ isActive }) =>
           cn(
             "flex h-full w-full items-center border-b-2 border-transparent px-6 font-normal uppercase transition-all",
