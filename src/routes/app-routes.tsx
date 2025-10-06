@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 
 import { CategoryProductsPage } from "../pages/category-products";
 import { ProductDetailsPage } from "../pages/product-details";
@@ -6,6 +6,10 @@ import { ProductDetailsPage } from "../pages/product-details";
 import App from "../App";
 
 export const ROUTER = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/all" />,
+  },
   {
     path: "/:categoryName",
     element: <App />,
