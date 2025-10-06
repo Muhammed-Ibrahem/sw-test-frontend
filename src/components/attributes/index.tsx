@@ -36,7 +36,7 @@ export const ProductAttributes = ({
       <div
         key={attributeSet.id}
         className="py-4"
-        data-testid={`product-attribute-${toKebabCase(attributeSet.id)}`}
+        data-testid={`product-attribute-${toKebabCase(attributeSet.name)}`}
       >
         <h3 className="font-roboto-condensed mb-2 text-lg font-bold uppercase">
           {attributeSet.name}:
@@ -52,6 +52,7 @@ export const ProductAttributes = ({
               onSelect={(attr) =>
                 onAttributeSelect(attributeSet.id, attributeSet.type, attr)
               }
+              testId={`product-attribute-${toKebabCase(attributeSet.name)}-${item.value}`}
             />
           ))}
         </ul>

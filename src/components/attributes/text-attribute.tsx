@@ -5,15 +5,17 @@ type Props = {
   attributeItem: Attribute;
   isSelected: boolean;
   onSelect: (attr: Attribute) => void;
+  testId: string;
 };
 
 export const TextAttribute = ({
   attributeItem,
   isSelected,
   onSelect,
+  testId,
 }: Props) => {
   return (
-    <li>
+    <li data-testid={testId}>
       <button
         onClick={() => onSelect(attributeItem)}
         className={cn(

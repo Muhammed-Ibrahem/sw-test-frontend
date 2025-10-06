@@ -5,15 +5,17 @@ type Props = {
   attributeItem: Attribute;
   isSelected: boolean;
   onSelect: (attr: Attribute) => void;
+  testId: string;
 };
 
 export const SwatchAttribute = ({
   attributeItem,
   isSelected,
   onSelect,
+  testId,
 }: Props) => {
   return (
-    <li>
+    <li data-testid={testId}>
       <button
         onClick={() => onSelect(attributeItem)}
         className={cn("border-2 border-transparent p-0.5", {
