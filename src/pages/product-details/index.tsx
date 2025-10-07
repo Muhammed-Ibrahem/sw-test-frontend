@@ -90,7 +90,7 @@ export const ProductDetailsPage = () => {
 
   return (
     <div className="grid gap-12 lg:grid-cols-3">
-      <div className="col-span-2">
+      <div className="lg:col-span-2">
         <ProductGalleryCarousel gallery={data!.product.gallery} />
       </div>
       <div>

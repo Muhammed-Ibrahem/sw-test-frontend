@@ -19,7 +19,10 @@ export const ProductGalleryCarousel = ({ gallery }: Props) => {
     setSelectedImage((prev) => (prev - 1 + gallery.length) % gallery.length);
   };
   return (
-    <div data-testid="product-gallery" className="flex gap-4">
+    <div
+      data-testid="product-gallery"
+      className="grid grid-cols-7 items-center justify-center"
+    >
       <div className="flex flex-col gap-4">
         {gallery.map(({ id, url, productId }, index) => (
           <button
@@ -41,30 +44,30 @@ export const ProductGalleryCarousel = ({ gallery }: Props) => {
         ))}
       </div>
 
-      <div className="relative flex-1">
-        <div className="h-[600px] overflow-hidden bg-white">
+      <div className="col-span-6 col-start-3 sm:col-start-2">
+        <div className="relative h-full w-full overflow-hidden bg-white sm:h-[600px]">
           <img
             src={gallery[selectedImage].url || ""}
             alt="Product"
-            className="max-h-full w-full object-contain"
+            className="h-full w-full object-contain"
           />
+          {gallery.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </>
+          )}
         </div>
-        {gallery.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-          </>
-        )}
       </div>
     </div>
   );
