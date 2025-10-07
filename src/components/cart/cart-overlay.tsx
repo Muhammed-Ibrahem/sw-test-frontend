@@ -50,7 +50,7 @@ export const CartOverlay = () => {
     <>
       <div
         data-testid="cart-overlay"
-        className="absolute top-full right-0 z-50 min-w-96 bg-white p-4"
+        className="absolute top-full right-0 z-50 w-full max-w-96 bg-white p-4"
       >
         <h3 className="mb-8 font-medium">
           <span className="font-bold">My Bag</span>
