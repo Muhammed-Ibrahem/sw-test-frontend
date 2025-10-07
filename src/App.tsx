@@ -11,7 +11,7 @@ function App() {
       <header className="container mx-auto px-4">
         <Navbar />
       </header>
-      <main className="relative h-[calc(100vh-80px)] w-full">
+      <main className="relative min-h-[calc(100vh-80px)] w-full">
         <CartBackDrop />
         <div className="container mx-auto px-4 py-20">
           <Outlet />
