@@ -19,10 +19,7 @@ export const ProductGalleryCarousel = ({ gallery }: Props) => {
     setSelectedImage((prev) => (prev - 1 + gallery.length) % gallery.length);
   };
   return (
-    <div
-      data-testid="product-gallery"
-      className="grid grid-cols-7 items-center justify-center"
-    >
+    <div data-testid="product-gallery" className="grid grid-cols-7 items-start">
       <div className="flex flex-col gap-4">
         {gallery.map(({ id, url, productId }, index) => (
           <button
