@@ -16,7 +16,7 @@ export const NavbarLink = ({ name }: Props) => {
         data-testid={dataTestId}
         className={({ isActive }) =>
           cn(
-            "flex h-full w-full items-center border-b-2 border-transparent px-6 font-normal uppercase transition-all",
+            "flex h-full w-full items-center border-b-2 border-transparent px-2 font-normal uppercase transition-all sm:px-6",
             {
               "text-primary border-primary font-bold": isActive,
             },
