@@ -17,7 +17,7 @@ export const CartSwatchAttribute = ({
     <li data-testid={`${testId}${isSelected ? "-selected" : ""}`}>
       <button
         className={cn("border-2 border-transparent p-0.5", {
-          "border-grayed border-2": isSelected,
+          "border-primary border-2": isSelected,
         })}
         aria-label={attributeItem.displayValue}
       >

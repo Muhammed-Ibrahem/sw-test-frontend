@@ -19,7 +19,7 @@ export const SwatchAttribute = ({
       <button
         onClick={() => onSelect(attributeItem)}
         className={cn("border-2 border-transparent p-0.5", {
-          "border-grayed border-2": isSelected,
+          "border-primary border-2": isSelected,
         })}
         aria-label={attributeItem.displayValue}
       >

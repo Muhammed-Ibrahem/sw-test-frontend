@@ -49,18 +49,22 @@ export const ProductGalleryCarousel = ({ gallery }: Props) => {
             className="max-h-full w-full object-contain"
           />
         </div>
-        <button
-          onClick={prevImage}
-          className="absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </button>
-        <button
-          onClick={nextImage}
-          className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </button>
+        {gallery.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 p-2 text-white transition-colors hover:bg-black/70"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
