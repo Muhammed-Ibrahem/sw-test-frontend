@@ -1,6 +1,8 @@
+import type { ReactNode } from "react";
+
 import { useCart } from "../../context/cart-context";
 
-export const CartBackDrop = () => {
+export const CartBackDrop = (): ReactNode => {
   const { changeCartStatus, isCartOpen } = useCart();
   return isCartOpen ? (
     <div

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Product } from "./product-types";
 
 export type Category = {
@@ -12,4 +13,13 @@ export type CategoriesData = {
 
 export type CategoryData = {
   category: Category;
+};
+
+export type CategoryHeaderProps = {
+  title: string;
+};
+
+export type CategoryProps = {
+  title: string;
+  children: ReactNode;
 };

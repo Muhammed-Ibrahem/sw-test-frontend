@@ -1,11 +1,13 @@
 import { NavLink, useParams } from "react-router";
+import type { JSX } from "react";
+
 import { cn } from "../../utils/cn";
 
 type Props = {
   name: string;
 };
 
-export const NavbarLink = ({ name }: Props) => {
+export const NavbarLink = ({ name }: Props): JSX.Element => {
   const { categoryName } = useParams();
   const dataTestId =
     categoryName === name ? "active-category-link" : "category-link";

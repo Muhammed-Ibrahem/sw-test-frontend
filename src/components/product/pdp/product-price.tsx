@@ -1,9 +1,6 @@
 import type { Price } from "../../../types/price-type";
 
-type Props = {
-  price: Price;
-};
-export const ProductPrice = ({ price }: Props) => {
+export const ProductPrice = ({ price }: { price: Price }) => {
   return (
     <div className="py-2">
       <h3 className="font-roboto-condensed mb-2 text-lg font-bold uppercase">

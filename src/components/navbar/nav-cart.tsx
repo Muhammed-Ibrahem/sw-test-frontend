@@ -1,9 +1,10 @@
+import type { ReactNode } from "react";
 import { ShoppingCart } from "lucide-react";
 
 import { useCart } from "../../context/cart-context";
 import { CartOverlay } from "../cart/cart-overlay";
 
-export const NavCart = () => {
+export const NavCart = (): ReactNode => {
   const { isCartOpen, changeCartStatus, totalItems } = useCart();
   return (
     <div className="justify-self-center-safe sm:justify-self-end">

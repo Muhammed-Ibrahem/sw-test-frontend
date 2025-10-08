@@ -1,3 +1,3 @@
-export const toKebabCase = (str: string) => {
+export const toKebabCase = (str: string): string => {
   return str.replace(/\s+/g, "-").toLowerCase();
 };

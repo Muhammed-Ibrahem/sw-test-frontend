@@ -15,3 +15,10 @@ export type AttributeSet = {
   type: AttributeSetType;
   items: Attribute[];
 };
+
+export type AttributeVariantProps = {
+  attributeItem: Attribute;
+  isSelected: boolean;
+  onSelect: (attr: Attribute) => void;
+  testId: string;
+};

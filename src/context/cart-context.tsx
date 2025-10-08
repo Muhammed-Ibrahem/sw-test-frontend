@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useCallback, useContext } from "react";
+import { createContext, useCallback, useContext, type JSX } from "react";
 
 import type { CartContextType } from "../types/cart-types";
 
@@ -24,11 +24,11 @@ const generateItemKey = (item: CartItem): string => {
   return `${item.id}__${attrs}`;
 };
 
-export const CartProvider = ({ children }: Props) => {
+export const CartProvider = ({ children }: Props): JSX.Element => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setCartStatus] = useState<boolean>(false);
 
-  const addItem = useCallback((item: CartItem) => {
+  const addItem = useCallback((item: CartItem): void => {
     setItems((prev) => {
       const key = generateItemKey(item);
       const existing = prev.find((p) => generateItemKey(p) === key);
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }: Props) => {
     });
   }, []);
 
-  const removeItem = useCallback((cartItem: CartItem) => {
+  const removeItem = useCallback((cartItem: CartItem): void => {
     const key = generateItemKey(cartItem);
     setItems((prev) =>
       prev
@@ -58,9 +58,9 @@ export const CartProvider = ({ children }: Props) => {
     );
   }, []);
 
-  const clearCart = useCallback(() => setItems([]), []);
+  const clearCart = useCallback((): void => setItems([]), []);
 
-  const changeCartStatus = useCallback((status: boolean) => {
+  const changeCartStatus = useCallback((status: boolean): void => {
     setCartStatus(status);
   }, []);
 
@@ -85,7 +85,7 @@ export const CartProvider = ({ children }: Props) => {
   );
 };
 
-export const useCart = () => {
+export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) throw new Error("useCart must be used within a CartProvider");
   return context;

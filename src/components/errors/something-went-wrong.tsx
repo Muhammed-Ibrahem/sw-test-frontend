@@ -1,4 +1,6 @@
-export const SomethingWentWrong = () => {
+import type { ReactNode } from "react";
+
+export const SomethingWentWrong = (): ReactNode => {
   return (
     <div className="space-y-2">
       <h3 className="text-xl font-semibold text-gray-900">

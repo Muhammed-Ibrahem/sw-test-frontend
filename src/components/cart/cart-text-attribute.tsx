@@ -1,18 +1,14 @@
-import type { Attribute } from "../../types/attribute-types";
+import type { JSX } from "react";
+
+import type { CartAttributeVariantProps } from "../../types/cart-types";
 
 import { cn } from "../../utils/cn";
-
-type Props = {
-  attributeItem: Attribute;
-  isSelected: boolean;
-  testId: string;
-};
 
 export const CartTextAttribute = ({
   attributeItem,
   isSelected,
   testId,
-}: Props) => {
+}: CartAttributeVariantProps): JSX.Element => {
   return (
     <li data-testid={`${testId}${isSelected ? "-selected" : ""}`}>
       <button

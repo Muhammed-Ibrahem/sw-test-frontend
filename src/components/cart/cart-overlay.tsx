@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client/react";
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import { toast } from "sonner";
 
 import { useCart } from "../../context/cart-context";
@@ -10,7 +10,7 @@ import { cn } from "../../utils/cn";
 
 import { CartItemComponent } from "./cart-item";
 
-export const CartOverlay = () => {
+export const CartOverlay = (): ReactNode => {
   const { totalItems, totalPrice, items, isCartOpen, clearCart } = useCart();
   const [placeOrder, { data, loading, error }] = useMutation<{
     placeOrder: number;

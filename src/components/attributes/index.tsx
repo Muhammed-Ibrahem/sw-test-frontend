@@ -1,24 +1,11 @@
-import type { Attribute, AttributeSet } from "../../types/attribute-types";
+import type { ReactNode } from "react";
+
+import type { ProductAttributesProps } from "../../types/product-types";
+
 import { toKebabCase } from "../../utils/kebab-case";
 
 import { SwatchAttribute } from "./swatch-attribute";
 import { TextAttribute } from "./text-attribute";
-
-type Props = {
-  attributes: AttributeSet[];
-  selectedAttributes: Record<
-    string,
-    {
-      type: string;
-      attribute: Attribute;
-    }
-  >;
-  onAttributeSelect: (
-    attributeSetId: string,
-    attributeSetType: string,
-    attribute: Attribute,
-  ) => void;
-};
 
 const ATTRIBUTES = {
   swatch: SwatchAttribute,
@@ -29,7 +16,7 @@ export const ProductAttributes = ({
   attributes,
   selectedAttributes,
   onAttributeSelect,
-}: Props) => {
+}: ProductAttributesProps): ReactNode => {
   return attributes.map((attributeSet) => {
     const AttributeComponent = ATTRIBUTES[attributeSet.type];
     return (

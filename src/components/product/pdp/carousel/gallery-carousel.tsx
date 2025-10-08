@@ -1,14 +1,11 @@
-import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
-import type { Gallery } from "../../../../types/gallery-type";
+import type { GalleryCarouselProps } from "../../../../types/gallery-type";
+
 import { cn } from "../../../../utils/cn";
 
-type Props = {
-  gallery: Gallery[];
-};
-
-export const ProductGalleryCarousel = ({ gallery }: Props) => {
+export const ProductGalleryCarousel = ({ gallery }: GalleryCarouselProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const nextImage = () => {

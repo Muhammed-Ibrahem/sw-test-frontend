@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 
 import type { CategoryData } from "../../types/category-types";
 import type { ProductsData } from "../../types/product-types";
+import type { ReactNode } from "react";
 
 import { GET_CATEGORY_PRODUCTS } from "../../graphql/category-graphql";
 import { GET_PRODUCTS } from "../../graphql/product-graphql";
@@ -12,7 +13,7 @@ import { ProductGrid } from "../../components/product/product-grid";
 import { NotFound } from "../../components/errors/not-found";
 import { Category } from "../../components/category";
 
-export const CategoryProductsPage = () => {
+export const CategoryProductsPage = (): ReactNode => {
   const { categoryName } = useParams();
 
   const isAllCategory = categoryName === "all";

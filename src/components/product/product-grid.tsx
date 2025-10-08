@@ -1,14 +1,9 @@
-import type { FC, ReactNode } from "react";
-
-import type { Product } from "../../types/product-types";
+import type { ProductGridProps } from "../../types/product-types";
+import type { JSX } from "react";
 
 import { ProductCard } from "./product-card";
 
-type Props = {
-  products: Product[];
-};
-
-export const ProductGrid: FC<Props> = ({ products }: Props): ReactNode => {
+export const ProductGrid = ({ products }: ProductGridProps): JSX.Element => {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => (

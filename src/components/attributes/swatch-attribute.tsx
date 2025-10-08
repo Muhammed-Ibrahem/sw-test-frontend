@@ -1,19 +1,15 @@
-import type { Attribute } from "../../types/attribute-types";
-import { cn } from "../../utils/cn";
+import type { JSX } from "react";
 
-type Props = {
-  attributeItem: Attribute;
-  isSelected: boolean;
-  onSelect: (attr: Attribute) => void;
-  testId: string;
-};
+import type { AttributeVariantProps } from "../../types/attribute-types";
+
+import { cn } from "../../utils/cn";
 
 export const SwatchAttribute = ({
   attributeItem,
   isSelected,
   onSelect,
   testId,
-}: Props) => {
+}: AttributeVariantProps): JSX.Element => {
   return (
     <li data-testid={testId}>
       <button

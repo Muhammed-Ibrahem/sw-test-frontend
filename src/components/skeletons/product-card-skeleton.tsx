@@ -1,4 +1,6 @@
-export function ProductCardSkeleton() {
+import type { JSX } from "react";
+
+export const ProductCardSkeleton = (): JSX.Element => {
   return (
     <div className="animate-pulse">
       {/* Image skeleton */}
@@ -11,9 +13,10 @@ export function ProductCardSkeleton() {
       <div className="h-4 w-1/4 bg-gray-200" />
     </div>
   );
-}
+};
 
-export function ProductGridSkeleton({ count = 6 }: { count?: number }) {
+type Props = { count?: number };
+export const ProductGridSkeleton = ({ count = 6 }: Props): JSX.Element => {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: count }).map((_, index) => (
@@ -21,4 +24,4 @@ export function ProductGridSkeleton({ count = 6 }: { count?: number }) {
       ))}
     </div>
   );
-}
+};

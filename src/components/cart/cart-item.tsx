@@ -1,24 +1,22 @@
+import type { JSX } from "react";
 import { Plus, Minus } from "lucide-react";
 
-import type { AttributeSet } from "../../types/attribute-types";
-import type { CartItem } from "../../types/cart-types";
+import type { CartItemProps } from "../../types/cart-types";
 
 import { CartSwatchAttribute } from "./cart-swatch-attribute";
 import { CartTextAttribute } from "./cart-text-attribute";
 import { useCart } from "../../context/cart-context";
 import { toKebabCase } from "../../utils/kebab-case";
 
-type Props = {
-  item: CartItem;
-  otherAttributes: AttributeSet[];
-};
-
 const CART_ITEM_ATTRIBUTES = {
   swatch: CartSwatchAttribute,
   text: CartTextAttribute,
 };
 
-export const CartItemComponent = ({ item, otherAttributes }: Props) => {
+export const CartItemComponent = ({
+  item,
+  otherAttributes,
+}: CartItemProps): JSX.Element => {
   const { addItem, removeItem } = useCart();
   const AttributesComponent = () => {
     return otherAttributes.map((attrSet) => {

@@ -1,18 +1,15 @@
-import { type FC } from "react";
-import { Link } from "react-router";
-import { ShoppingCart } from "lucide-react";
+import type { ProductCardProps } from "../../types/product-types";
+import { type JSX } from "react";
 
-import type { Product } from "../../types/product-types";
+import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router";
+import { toast } from "sonner";
 
 import { useCart } from "../../context/cart-context";
 
 import { toKebabCase } from "../../utils/kebab-case";
-import { toast } from "sonner";
 
-type Props = {
-  product: Product;
-};
-export const ProductCard: FC<Props> = ({ product }: Props) => {
+export const ProductCard = ({ product }: ProductCardProps): JSX.Element => {
   const { addItem } = useCart();
   const productDefaultAttributes = product.attributes.reduce((acc, cur) => {
     return {

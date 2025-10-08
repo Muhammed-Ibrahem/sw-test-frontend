@@ -1,11 +1,6 @@
-import type { FC, ReactNode } from "react";
+import type { JSX } from "react";
+import type { CategoryHeaderProps } from "../../types/category-types";
 
-type TitleProps = {
-  title: string;
-};
-
-export const CategoryHeader: FC<TitleProps> = ({
-  title,
-}: TitleProps): ReactNode => {
+export const CategoryHeader = ({ title }: CategoryHeaderProps): JSX.Element => {
   return <h1 className="text-5xl capitalize">{title}</h1>;
 };

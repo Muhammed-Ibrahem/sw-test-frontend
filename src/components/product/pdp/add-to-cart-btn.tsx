@@ -1,10 +1,11 @@
+import type { PDPAddToCartProps } from "../../../types/product-types";
+
 import { cn } from "../../../utils/cn";
 
-type Props = {
-  handleAddToCart: () => void;
-  isActive: boolean;
-};
-export const AddToCartBtn = ({ handleAddToCart, isActive }: Props) => {
+export const AddToCartBtn = ({
+  handleAddToCart,
+  isActive,
+}: PDPAddToCartProps) => {
   return (
     <button
       disabled={!isActive}

@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router";
 
-export const NotFound = () => {
+export const NotFound = (): ReactNode => {
   return (
     <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">

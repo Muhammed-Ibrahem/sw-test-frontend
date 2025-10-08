@@ -1,7 +1,8 @@
-import type { FC, ReactNode } from "react";
+import type { ReactNode } from "react";
+
 import BrandIcon from "../../assets/brand-icon.svg";
 
-export const NavLogo: FC = (): ReactNode => {
+export const NavLogo = (): ReactNode => {
   return (
     <img
       width={30}

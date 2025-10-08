@@ -1,4 +1,6 @@
-export function ProductDetailSkeleton() {
+import type { JSX } from "react";
+
+export const ProductDetailSkeleton = (): JSX.Element => {
   return (
     <div className="grid animate-pulse gap-12 lg:grid-cols-2">
       {/* Left side - Images skeleton */}
@@ -57,4 +59,4 @@ export function ProductDetailSkeleton() {
       </div>
     </div>
   );
-}
+};

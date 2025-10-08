@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { useQuery } from "@apollo/client/react";
 
 import type { CategoriesData } from "../../types/category-types";
@@ -7,7 +8,7 @@ import { NavLinksSkeleton } from "../skeletons/nav-links-skeleton";
 import { SomethingWentWrong } from "../errors/something-went-wrong";
 import { NavbarLink } from "./nav-link";
 
-export const NavLinks = () => {
+export const NavLinks = (): ReactNode => {
   const { loading, error, data } = useQuery<CategoriesData>(GET_CATEGORIES, {
     fetchPolicy: "cache-first",
   });

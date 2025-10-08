@@ -3,3 +3,7 @@ export type Gallery = {
   url: string;
   productId: string;
 };
+
+export type GalleryCarouselProps = {
+  gallery: Gallery[];
+};

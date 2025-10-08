@@ -1,10 +1,11 @@
+import type { ReactNode } from "react";
 import { Outlet } from "react-router";
 import { Toaster } from "sonner";
 
 import { CartBackDrop } from "./components/cart/cart-backdrop";
 import { Navbar } from "./components/navbar";
 
-function App() {
+function App(): ReactNode {
   return (
     <>
       <Toaster richColors position="top-center" />

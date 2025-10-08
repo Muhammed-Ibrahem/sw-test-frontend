@@ -1,4 +1,4 @@
-import type { Attribute } from "./attribute-types";
+import type { Attribute, AttributeSet } from "./attribute-types";
 import type { Product } from "./product-types";
 
 export type CartItem = {
@@ -27,4 +27,15 @@ export type CartContextType = {
   clearCart: () => void;
   isCartOpen: boolean;
   changeCartStatus: (status: boolean) => void;
+};
+
+export type CartItemProps = {
+  item: CartItem;
+  otherAttributes: AttributeSet[];
+};
+
+export type CartAttributeVariantProps = {
+  attributeItem: Attribute;
+  isSelected: boolean;
+  testId: string;
 };
