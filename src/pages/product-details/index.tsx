@@ -43,20 +43,19 @@ export const ProductDetailsPage = () => {
   const [isAddToCartActive, setAddToCartStatus] = useState<boolean>(false);
 
   useEffect(() => {
-    const addToCartBtnStatus =
-      data?.product.inStock &&
-      Object.entries(selectedAttributes).length ===
-        data?.product.attributes.length;
+    if (data && data.product) {
+      const addToCartBtnStatus =
+        data.product.inStock &&
+        Object.entries(selectedAttributes).length ===
+          data.product.attributes.length;
 
-    setAddToCartStatus(!!addToCartBtnStatus);
-  }, [
-    selectedAttributes,
-    data?.product.attributes.length,
-    data?.product.inStock,
-  ]);
+      setAddToCartStatus(!!addToCartBtnStatus);
+    }
+  }, [selectedAttributes, data]);
 
   if (loading) return <Loading />;
   if (error) return <NotFound />;
+  if (!data?.product) return <NotFound />;
 
   const handleAttributeSelect = (
     attributeSetId: string,
