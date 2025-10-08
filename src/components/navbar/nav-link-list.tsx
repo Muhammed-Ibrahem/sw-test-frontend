@@ -4,7 +4,7 @@ import type { CategoriesData } from "../../types/category-types";
 
 import { GET_CATEGORIES } from "../../graphql/category-graphql";
 import { NavLinksSkeleton } from "../skeletons/nav-links-skeleton";
-import { NotFound } from "../errors/not-found";
+import { SomethingWentWrong } from "../errors/something-went-wrong";
 import { NavbarLink } from "./nav-link";
 
 export const NavLinks = () => {
@@ -13,7 +13,7 @@ export const NavLinks = () => {
   });
 
   if (loading) return <NavLinksSkeleton />;
-  if (error) return <NotFound />;
+  if (error) return <SomethingWentWrong />;
 
   return (
     <ul className="flex items-center">

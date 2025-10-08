@@ -17,6 +17,7 @@ import { AddToCartBtn } from "../../components/product/pdp/add-to-cart-btn";
 import { ProductPrice } from "../../components/product/pdp/product-price";
 import { ProductAttributes } from "../../components/attributes";
 import { NotFound } from "../../components/errors/not-found";
+import { SomethingWentWrong } from "../../components/errors/something-went-wrong";
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -54,7 +55,7 @@ export const ProductDetailsPage = () => {
   }, [selectedAttributes, data]);
 
   if (loading) return <ProductDetailSkeleton />;
-  if (error) return <NotFound />;
+  if (error) return <SomethingWentWrong />;
   if (!data?.product) return <NotFound />;
 
   const handleAttributeSelect = (

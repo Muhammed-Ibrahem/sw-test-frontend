@@ -9,7 +9,6 @@ import { PLACE_ORDER_MUTATION } from "../../graphql/cart-graphql";
 import { cn } from "../../utils/cn";
 
 import { CartItemComponent } from "./cart-item";
-import { Loading } from "../loader/loading";
 
 export const CartOverlay = () => {
   const { totalItems, totalPrice, items, isCartOpen, clearCart } = useCart();
@@ -83,7 +82,7 @@ export const CartOverlay = () => {
             },
           )}
         >
-          {loading ? <Loading /> : "place order"}
+          {loading ? "Processing..." : "place order"}
         </button>
       </div>
     </>
