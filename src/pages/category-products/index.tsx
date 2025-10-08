@@ -7,9 +7,9 @@ import type { ProductsData } from "../../types/product-types";
 import { GET_CATEGORY_PRODUCTS } from "../../graphql/category-graphql";
 import { GET_PRODUCTS } from "../../graphql/product-graphql";
 
+import { ProductGridSkeleton } from "../../components/skeletons/product-card-skeleton";
 import { ProductGrid } from "../../components/product/product-grid";
 import { NotFound } from "../../components/errors/not-found";
-import { Loading } from "../../components/loader/loading";
 import { Category } from "../../components/category";
 
 export const CategoryProductsPage = () => {
@@ -26,7 +26,7 @@ export const CategoryProductsPage = () => {
     },
   );
 
-  if (loading) return <Loading />;
+  if (loading) return <ProductGridSkeleton />;
   if (error) return <NotFound />;
 
   const products = isAllCategory

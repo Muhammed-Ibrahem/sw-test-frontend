@@ -12,11 +12,11 @@ import type { Attribute } from "../../types/attribute-types";
 import type { Product } from "../../types/product-types";
 
 import { ProductGalleryCarousel } from "../../components/product/pdp/carousel/gallery-carousel";
+import { ProductDetailSkeleton } from "../../components/skeletons/pdp-skeleton";
 import { AddToCartBtn } from "../../components/product/pdp/add-to-cart-btn";
 import { ProductPrice } from "../../components/product/pdp/product-price";
 import { ProductAttributes } from "../../components/attributes";
 import { NotFound } from "../../components/errors/not-found";
-import { Loading } from "../../components/loader/loading";
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -53,7 +53,7 @@ export const ProductDetailsPage = () => {
     }
   }, [selectedAttributes, data]);
 
-  if (loading) return <Loading />;
+  if (loading) return <ProductDetailSkeleton />;
   if (error) return <NotFound />;
   if (!data?.product) return <NotFound />;
 

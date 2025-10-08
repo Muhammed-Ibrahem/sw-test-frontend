@@ -3,8 +3,8 @@ import { useQuery } from "@apollo/client/react";
 import type { CategoriesData } from "../../types/category-types";
 
 import { GET_CATEGORIES } from "../../graphql/category-graphql";
+import { NavLinksSkeleton } from "../skeletons/nav-links-skeleton";
 import { NotFound } from "../errors/not-found";
-import { Loading } from "../loader/loading";
 import { NavbarLink } from "./nav-link";
 
 export const NavLinks = () => {
@@ -12,7 +12,7 @@ export const NavLinks = () => {
     fetchPolicy: "cache-first",
   });
 
-  if (loading) return <Loading />;
+  if (loading) return <NavLinksSkeleton />;
   if (error) return <NotFound />;
 
   return (
