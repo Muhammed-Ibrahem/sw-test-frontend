@@ -12,12 +12,10 @@ import type { Attribute } from "../../types/attribute-types";
 import type { Product } from "../../types/product-types";
 
 import { ProductGalleryCarousel } from "../../components/product/pdp/carousel/gallery-carousel";
-import { SomethingWentWrong } from "../../components/errors/something-went-wrong";
 import { ProductDetailSkeleton } from "../../components/skeletons/pdp-skeleton";
 import { AddToCartBtn } from "../../components/product/pdp/add-to-cart-btn";
 import { ProductPrice } from "../../components/product/pdp/product-price";
 import { ProductAttributes } from "../../components/attributes";
-import { NotFound } from "../../components/errors/not-found";
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -31,6 +29,7 @@ export const ProductDetailsPage = () => {
       },
     },
   );
+  if (error) throw error;
 
   const [selectedAttributes, setSelectedAttributes] = useState<
     Record<
@@ -41,6 +40,7 @@ export const ProductDetailsPage = () => {
       }
     >
   >({});
+
   const [isAddToCartActive, setAddToCartStatus] = useState<boolean>(false);
 
   useEffect(() => {
@@ -55,8 +55,6 @@ export const ProductDetailsPage = () => {
   }, [selectedAttributes, data]);
 
   if (loading) return <ProductDetailSkeleton />;
-  if (error) return <SomethingWentWrong />;
-  if (!data?.product) return <NotFound />;
 
   const handleAttributeSelect = (
     attributeSetId: string,

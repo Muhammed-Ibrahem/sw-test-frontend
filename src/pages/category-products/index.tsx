@@ -10,7 +10,6 @@ import { GET_PRODUCTS } from "../../graphql/product-graphql";
 
 import { ProductGridSkeleton } from "../../components/skeletons/product-card-skeleton";
 import { ProductGrid } from "../../components/product/product-grid";
-import { NotFound } from "../../components/errors/not-found";
 import { Category } from "../../components/category";
 
 export const CategoryProductsPage = (): ReactNode => {
@@ -28,7 +27,7 @@ export const CategoryProductsPage = (): ReactNode => {
   );
 
   if (loading) return <ProductGridSkeleton />;
-  if (error) return <NotFound />;
+  if (error) throw error;
 
   const products = isAllCategory
     ? (data as ProductsData).products
